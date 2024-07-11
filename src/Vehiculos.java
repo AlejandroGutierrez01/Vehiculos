@@ -10,14 +10,14 @@ public class Vehiculos {
     public Vehiculos() {
     }
 
-    public Vehiculos(String propietario, String color, String tipoCombustible, Double cilindraje, String modelo, String marca, String placa) {
-        this.propietario = propietario;
-        this.color = color;
-        this.tipoCombustible = tipoCombustible;
-        this.cilindraje = cilindraje;
-        this.modelo = modelo;
-        this.marca = marca;
+    public Vehiculos(String placa, String marca, String modelo, Double cilindraje, String tipoCombustible, String color, String propietario) {
         this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cilindraje = cilindraje;
+        this.tipoCombustible = tipoCombustible;
+        this.color = color;
+        this.propietario = propietario;
     }
 
     public String getPlaca() {
