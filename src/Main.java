@@ -7,7 +7,7 @@ public class Main {
         frame.setContentPane(new Form1().mainPanel);
         frame.pack();
         frame.setLocationRelativeTo(null);
-        frame.setSize(500, 300);
+        frame.setSize(600, 400);
         frame.setVisible(true);
     }
 }

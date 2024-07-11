@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static java.lang.Double.parseDouble;
-import static java.lang.Float.parseFloat;
+
 public class Form1 {
     public JPanel mainPanel;
     private JTextField placatxt;
@@ -18,14 +18,14 @@ public class Form1 {
     private JTextField propietariotxt;
     private JButton enviarButton;
     private JButton borrarButton;
-
+    private JButton buscarButton;
+    String url = "jdbc:mysql://localhost:3306/vehiculosBD";
+    String user = "root";
+    String password = "123456";
     public Form1() {
         enviarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String url = "jdbc:mysql://localhost:3306/vehiculosBD";
-                String user = "root";
-                String password = "123456";
                 Vehiculos vehiculo1 = new Vehiculos(placatxt.getText(),marcatxt.getText(),modelotxt.getText(),parseDouble(cilindrajetxt.getText()),combustibletxt.getText(),colortxt.getText(),propietariotxt.getText());
                 String sql = "INSERT INTO vehiculos (placa, marca, modelo, cilindraje, tipoCombustible, color, propietario) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 try(Connection connection= DriverManager.getConnection(url,user,password)) {
@@ -35,7 +35,7 @@ public class Form1 {
                     cadenaPreparada.setString(1, vehiculo1.getPlaca());
                     cadenaPreparada.setString(2, vehiculo1.getMarca());
                     cadenaPreparada.setString(3, vehiculo1.getModelo());
-                    cadenaPreparada.setDouble(4,vehiculo1.getCilindraje());
+                    cadenaPreparada.setDouble(4, vehiculo1.getCilindraje());
                     cadenaPreparada.setString(5, vehiculo1.getTipoCombustible());
                     cadenaPreparada.setString(6, vehiculo1.getColor());
                     cadenaPreparada.setString(7, vehiculo1.getPropietario());
@@ -57,6 +57,20 @@ public class Form1 {
                 combustibletxt.setText("");
                 colortxt.setText("");
                 propietariotxt.setText("");
+            }
+        });
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame();
+                frame.setTitle("Vehículos 2024");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setContentPane(new Form2().menuDos);
+                frame.pack();
+                frame.setLocationRelativeTo(null);
+                frame.setSize(600, 400);
+                frame.setVisible(true);
+                ((JFrame) SwingUtilities.getWindowAncestor(buscarButton)).dispose();
             }
         });
     }
